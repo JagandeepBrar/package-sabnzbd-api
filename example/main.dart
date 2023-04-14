@@ -1,13 +1,11 @@
 import 'package:sabnzbd_api/sabnzbd_api.dart';
 
 void main() async {
-  // Set up the Radarr API
+  // Set up the SABnzbd API
   final api = SABnzbdAPI(SABnzbdConfig(
-    // TODO: Set default port correct
-    host: '192.168.1.100:port',
-    // TODO: Add additional config properties
+    host: '192.168.1.100:8080',
+    apiKey: 'asdf123',
   ));
 
   // Make API Calls
-  // TODO: Add API call examples
 }

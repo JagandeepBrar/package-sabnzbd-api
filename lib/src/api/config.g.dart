@@ -9,9 +9,11 @@ part of 'config.dart';
 _$_SABnzbdConfig _$$_SABnzbdConfigFromJson(Map<String, dynamic> json) =>
     _$_SABnzbdConfig(
       host: json['host'] as String,
+      apiKey: json['apiKey'] as String,
     );
 
 Map<String, dynamic> _$$_SABnzbdConfigToJson(_$_SABnzbdConfig instance) =>
     <String, dynamic>{
       'host': instance.host,
+      'apiKey': instance.apiKey,
     };

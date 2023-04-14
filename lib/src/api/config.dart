@@ -11,18 +11,21 @@ class SABnzbdConfig with _$SABnzbdConfig, JsonSerializableMixin {
 
   const factory SABnzbdConfig({
     required String host,
-    @JsonKey(ignore: true) BaseOptions? options,
+    required String apiKey,
+    @JsonKey(includeFromJson: false, includeToJson: false) BaseOptions? options,
   }) = _SABnzbdConfig;
 
   String get baseUrl {
-    // TODO: Generate base URL to API path
-    return host;
+    String url = host;
+    if (url.endsWith('/')) url = url.substring(0, url.length - 1);
+    return '$url/api';
   }
 
   BaseOptions get baseOptions {
     final opts = options ?? BaseOptions();
     opts.baseUrl = baseUrl;
-    // TODO: Prepare HTTP client base options
+    opts.queryParameters['output'] = 'json';
+    if (apiKey.isNotEmpty) opts.queryParameters['apikey'] = apiKey;
     return opts;
   }
 

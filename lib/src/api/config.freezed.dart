@@ -21,7 +21,8 @@ SABnzbdConfig _$SABnzbdConfigFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SABnzbdConfig {
   String get host => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+  String get apiKey => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   BaseOptions? get options => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,11 @@ abstract class $SABnzbdConfigCopyWith<$Res> {
           SABnzbdConfig value, $Res Function(SABnzbdConfig) then) =
       _$SABnzbdConfigCopyWithImpl<$Res, SABnzbdConfig>;
   @useResult
-  $Res call({String host, @JsonKey(ignore: true) BaseOptions? options});
+  $Res call(
+      {String host,
+      String apiKey,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+          BaseOptions? options});
 }
 
 /// @nodoc
@@ -53,12 +58,17 @@ class _$SABnzbdConfigCopyWithImpl<$Res, $Val extends SABnzbdConfig>
   @override
   $Res call({
     Object? host = null,
+    Object? apiKey = null,
     Object? options = freezed,
   }) {
     return _then(_value.copyWith(
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
+              as String,
+      apiKey: null == apiKey
+          ? _value.apiKey
+          : apiKey // ignore: cast_nullable_to_non_nullable
               as String,
       options: freezed == options
           ? _value.options
@@ -76,7 +86,11 @@ abstract class _$$_SABnzbdConfigCopyWith<$Res>
       __$$_SABnzbdConfigCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String host, @JsonKey(ignore: true) BaseOptions? options});
+  $Res call(
+      {String host,
+      String apiKey,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+          BaseOptions? options});
 }
 
 /// @nodoc
@@ -91,12 +105,17 @@ class __$$_SABnzbdConfigCopyWithImpl<$Res>
   @override
   $Res call({
     Object? host = null,
+    Object? apiKey = null,
     Object? options = freezed,
   }) {
     return _then(_$_SABnzbdConfig(
       host: null == host
           ? _value.host
           : host // ignore: cast_nullable_to_non_nullable
+              as String,
+      apiKey: null == apiKey
+          ? _value.apiKey
+          : apiKey // ignore: cast_nullable_to_non_nullable
               as String,
       options: freezed == options
           ? _value.options
@@ -110,7 +129,9 @@ class __$$_SABnzbdConfigCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SABnzbdConfig extends _SABnzbdConfig {
   const _$_SABnzbdConfig(
-      {required this.host, @JsonKey(ignore: true) this.options})
+      {required this.host,
+      required this.apiKey,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.options})
       : super._();
 
   factory _$_SABnzbdConfig.fromJson(Map<String, dynamic> json) =>
@@ -119,12 +140,14 @@ class _$_SABnzbdConfig extends _SABnzbdConfig {
   @override
   final String host;
   @override
-  @JsonKey(ignore: true)
+  final String apiKey;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final BaseOptions? options;
 
   @override
   String toString() {
-    return 'SABnzbdConfig(host: $host, options: $options)';
+    return 'SABnzbdConfig(host: $host, apiKey: $apiKey, options: $options)';
   }
 
   @override
@@ -133,12 +156,13 @@ class _$_SABnzbdConfig extends _SABnzbdConfig {
         (other.runtimeType == runtimeType &&
             other is _$_SABnzbdConfig &&
             (identical(other.host, host) || other.host == host) &&
+            (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
             (identical(other.options, options) || other.options == options));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, host, options);
+  int get hashCode => Object.hash(runtimeType, host, apiKey, options);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +181,9 @@ class _$_SABnzbdConfig extends _SABnzbdConfig {
 abstract class _SABnzbdConfig extends SABnzbdConfig {
   const factory _SABnzbdConfig(
       {required final String host,
-      @JsonKey(ignore: true) final BaseOptions? options}) = _$_SABnzbdConfig;
+      required final String apiKey,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+          final BaseOptions? options}) = _$_SABnzbdConfig;
   const _SABnzbdConfig._() : super._();
 
   factory _SABnzbdConfig.fromJson(Map<String, dynamic> json) =
@@ -166,7 +192,9 @@ abstract class _SABnzbdConfig extends SABnzbdConfig {
   @override
   String get host;
   @override
-  @JsonKey(ignore: true)
+  String get apiKey;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   BaseOptions? get options;
   @override
   @JsonKey(ignore: true)
