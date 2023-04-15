@@ -5,6 +5,8 @@ mixin JsonSerializableMixin {
 }
 
 mixin EnumSerializableMixin on Enum {
+  String get name;
+
   @internal
   String toJson() => name;
 }
