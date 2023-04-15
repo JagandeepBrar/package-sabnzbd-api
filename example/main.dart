@@ -8,4 +8,9 @@ void main() async {
   ));
 
   // Make API Calls
+  final resume = await api.resumeQueue();
+  print(resume);
+
+  final history = await api.getHistory();
+  print(history);
 }
