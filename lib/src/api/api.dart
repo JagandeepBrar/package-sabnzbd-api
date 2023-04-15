@@ -12,4 +12,27 @@ abstract class SABnzbdAPI {
     Dio dio = Dio(config.baseOptions);
     return _SABnzbdAPI(dio);
   }
+
+  /// Pause the entire download queue.
+  @GET('')
+  Future<SABnzbdActionResult> pauseQueue({
+    @Query('mode') String mode = 'pause',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Pause the entire download queue for X amount of minutes.
+  @GET('')
+  Future<SABnzbdActionResult> pauseQueueFor(
+    @Query('value') int minutes, {
+    @Query('mode') String mode = 'config',
+    @Query('name') String action = 'set_pause',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Resume the entire download queue.
+  @GET('')
+  Future<SABnzbdActionResult> resumeQueue({
+    @Query('mode') String mode = 'resume',
+    @CancelRequest() CancelToken? cancelToken,
+  });
 }
