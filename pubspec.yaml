@@ -1,6 +1,6 @@
 name: sabnzbd_api
 description: Dart abstraction for SABnzbd's public API (https://sabnzbd.org)
-version: 0.0.1-pre.1
+version: 0.0.1-pre.2
 homepage: https://github.com/RoninComputer/package-sabnzbd-api
 repository: https://github.com/RoninComputer/package-sabnzbd-api
 issue_tracker: https://github.com/RoninComputer/package-sabnzbd-api/issues
