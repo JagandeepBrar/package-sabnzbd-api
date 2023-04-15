@@ -9,7 +9,12 @@ This package is intended to supply a 1:1 mapping of the [public API documentatio
 
 # Preparing SABnzbd
 
-> TODO: Add Preparation Docs
+To connect to your instance of SABnzbd, you will need:
+
+1. The host IPv4 address of the machine running SABnzbd
+2. The API key of the SABnzbd instance (which can be found in the web GUI under Config → General)
+
+Please note that in order to access SABnzbd from another machine on the network you must ensure that both the SABnzbd executable and the running port are allowed in any running firewalls on the host machine.
 
 # Connecting to the API
 
@@ -23,9 +28,8 @@ Now you can instantiate an instance of `SABnzbdConfig` that is used to instantia
 
 ```dart
 final config = SABnzbdConfig(
-  // TODO: Set default port correct
-  host: '192.168.1.100:port',
-  // TODO: Add additional config properties
+  host: '192.168.1.100:8080',
+  apiKey: 'asdf123',
 );
 final api = SABnzbdAPI(config);
 ```
@@ -33,6 +37,12 @@ final api = SABnzbdAPI(config);
 > You can optionally pass in a Dio `BaseOptions` instance to the configuration to customize the HTTP client. Note that the `baseUrl` property will be overwritten with the given `host` property in the configuration.
 
 And you are ready to make API calls!
+
+```dart
+final resume = await api.resumeQueue(); // Resume the global queue
+final history = await api.getHistory(); // Get items in the history
+...
+```
 
 # Additional Notes
 
