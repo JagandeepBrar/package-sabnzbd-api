@@ -87,4 +87,14 @@ abstract class SABnzbdAPI {
     @Query('name') String action = 'speedlimit',
     @CancelRequest() CancelToken? cancelToken,
   });
+
+  /// Sort the queue by the given type in the given direction.
+  @GET('')
+  Future<SABnzbdActionResult> sortQueue(
+    @Query('sort') SABnzbdSortType sortType,
+    @Query('dir') SABnzbdSortDirection direction, {
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'sort',
+    @CancelRequest() CancelToken? cancelToken,
+  });
 }
