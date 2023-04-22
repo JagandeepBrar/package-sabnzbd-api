@@ -12,6 +12,7 @@ class SABnzbdResult<T extends JsonSerializableMixin>
   const factory SABnzbdResult({
     bool? status,
     @JsonKey(name: 'nzo_ids') List<String>? nzoIds,
+    int? position,
     T? result,
   }) = _SABnzbdResult;
 
@@ -26,6 +27,7 @@ class SABnzbdResult<T extends JsonSerializableMixin>
     return {
       if (status != null) 'status': status,
       if (nzoIds != null) 'nzo_ids': nzoIds,
+      if (position != null) 'position': position,
       if (result != null) 'result': result!.toJson(),
     };
   }

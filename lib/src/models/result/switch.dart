@@ -7,21 +7,10 @@ part 'switch.g.dart';
 @Freezed()
 class SABnzbdSwitchResult with _$SABnzbdSwitchResult, JsonSerializableMixin {
   const factory SABnzbdSwitchResult({
-    required SABnzbdSwitchResultPayload result,
+    required int position,
+    required int priority,
   }) = _SABnzbdSwitchResult;
 
   factory SABnzbdSwitchResult.fromJson(Map<String, Object?> json) =>
       _$SABnzbdSwitchResultFromJson(json);
-}
-
-@Freezed()
-class SABnzbdSwitchResultPayload
-    with _$SABnzbdSwitchResultPayload, JsonSerializableMixin {
-  const factory SABnzbdSwitchResultPayload({
-    required int position,
-    required int priority,
-  }) = _SABnzbdSwitchResultPayload;
-
-  factory SABnzbdSwitchResultPayload.fromJson(Map<String, Object?> json) =>
-      _$SABnzbdSwitchResultPayloadFromJson(json);
 }

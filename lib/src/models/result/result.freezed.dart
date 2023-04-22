@@ -24,6 +24,7 @@ mixin _$SABnzbdResult<T extends JsonSerializableMixin> {
   bool? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'nzo_ids')
   List<String>? get nzoIds => throw _privateConstructorUsedError;
+  int? get position => throw _privateConstructorUsedError;
   T? get result => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,6 +41,7 @@ abstract class $SABnzbdResultCopyWith<T extends JsonSerializableMixin, $Res> {
   $Res call(
       {bool? status,
       @JsonKey(name: 'nzo_ids') List<String>? nzoIds,
+      int? position,
       T? result});
 }
 
@@ -58,6 +60,7 @@ class _$SABnzbdResultCopyWithImpl<T extends JsonSerializableMixin, $Res,
   $Res call({
     Object? status = freezed,
     Object? nzoIds = freezed,
+    Object? position = freezed,
     Object? result = null,
   }) {
     return _then(_value.copyWith(
@@ -69,6 +72,10 @@ class _$SABnzbdResultCopyWithImpl<T extends JsonSerializableMixin, $Res,
           ? _value.nzoIds
           : nzoIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int?,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -88,6 +95,7 @@ abstract class _$$_SABnzbdResultCopyWith<T extends JsonSerializableMixin, $Res>
   $Res call(
       {bool? status,
       @JsonKey(name: 'nzo_ids') List<String>? nzoIds,
+      int? position,
       T? result});
 }
 
@@ -104,6 +112,7 @@ class __$$_SABnzbdResultCopyWithImpl<T extends JsonSerializableMixin, $Res>
   $Res call({
     Object? status = freezed,
     Object? nzoIds = freezed,
+    Object? position = freezed,
     Object? result = null,
   }) {
     return _then(_$_SABnzbdResult<T>(
@@ -115,6 +124,10 @@ class __$$_SABnzbdResultCopyWithImpl<T extends JsonSerializableMixin, $Res>
           ? _value._nzoIds
           : nzoIds // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      position: freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as int?,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -130,6 +143,7 @@ class _$_SABnzbdResult<T extends JsonSerializableMixin>
   const _$_SABnzbdResult(
       {this.status,
       @JsonKey(name: 'nzo_ids') final List<String>? nzoIds,
+      this.position,
       this.result})
       : _nzoIds = nzoIds,
         super._();
@@ -152,11 +166,13 @@ class _$_SABnzbdResult<T extends JsonSerializableMixin>
   }
 
   @override
+  final int? position;
+  @override
   final T? result;
 
   @override
   String toString() {
-    return 'SABnzbdResult<$T>(status: $status, nzoIds: $nzoIds, result: $result)';
+    return 'SABnzbdResult<$T>(status: $status, nzoIds: $nzoIds, position: $position, result: $result)';
   }
 
   @override
@@ -166,6 +182,8 @@ class _$_SABnzbdResult<T extends JsonSerializableMixin>
             other is _$_SABnzbdResult<T> &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._nzoIds, _nzoIds) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
             const DeepCollectionEquality().equals(other.result, result));
   }
 
@@ -175,6 +193,7 @@ class _$_SABnzbdResult<T extends JsonSerializableMixin>
       runtimeType,
       status,
       const DeepCollectionEquality().hash(_nzoIds),
+      position,
       const DeepCollectionEquality().hash(result));
 
   @JsonKey(ignore: true)
@@ -189,6 +208,7 @@ abstract class _SABnzbdResult<T extends JsonSerializableMixin>
   const factory _SABnzbdResult(
       {final bool? status,
       @JsonKey(name: 'nzo_ids') final List<String>? nzoIds,
+      final int? position,
       final T? result}) = _$_SABnzbdResult<T>;
   const _SABnzbdResult._() : super._();
 
@@ -201,6 +221,8 @@ abstract class _SABnzbdResult<T extends JsonSerializableMixin>
   @override
   @JsonKey(name: 'nzo_ids')
   List<String>? get nzoIds;
+  @override
+  int? get position;
   @override
   T? get result;
   @override

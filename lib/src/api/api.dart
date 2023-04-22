@@ -181,6 +181,43 @@ abstract class SABnzbdAPI {
     @CancelRequest() CancelToken? cancelToken,
   });
 
+  /// Set a job's category.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobCategory(
+    @Query('value') String nzoId,
+    @Query('value2') String category, {
+    @Query('mode') String mode = 'change_cat',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Set a job's post-processing options.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobPostProcessingOptions(
+    @Query('value') String nzoId,
+    @Query('value2') SABnzbdPostProcessing option, {
+    @Query('mode') String mode = 'change_opts',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Set a job's category.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobPriority(
+    @Query('value') String nzoId,
+    @Query('value2') SABnzbdPriority priority, {
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'priority',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Set a job's post-processing script.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobScript(
+    @Query('value') String nzoId,
+    @Query('value2') String script, {
+    @Query('mode') String mode = 'change_script',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
   /// Set the queue line speed limit.
   ///
   /// If a number value is passed in then the speed limit is so to the value as a percentage.

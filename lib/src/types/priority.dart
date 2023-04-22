@@ -4,6 +4,7 @@ import 'package:sabnzbd_api/src/internal/mixins/serializable.dart';
 @JsonEnum(valueField: 'name')
 enum SABnzbdPriority with EnumSerializableMixin {
   catDefault(-100),
+  stop(-4),
   duplicate(-3),
   paused(-2),
   low(-1),

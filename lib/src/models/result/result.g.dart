@@ -14,6 +14,7 @@ _$_SABnzbdResult<T> _$$_SABnzbdResultFromJson<T extends JsonSerializableMixin>(
       status: json['status'] as bool?,
       nzoIds:
           (json['nzo_ids'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      position: json['position'] as int?,
       result: _$nullableGenericFromJson(json['result'], fromJsonT),
     );
 

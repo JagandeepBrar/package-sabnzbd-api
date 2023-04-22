@@ -651,6 +651,156 @@ class _SABnzbdAPI implements SABnzbdAPI {
   }
 
   @override
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobCategory(
+    nzoId,
+    category, {
+    mode = 'change_cat',
+    cancelToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'value': nzoId,
+      r'value2': category,
+      r'mode': mode,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SABnzbdResult<SABnzbdEmptyResult>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '',
+              queryParameters: queryParameters,
+              data: _data,
+              cancelToken: cancelToken,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SABnzbdResult<SABnzbdEmptyResult>.fromJson(
+      _result.data!,
+      (json) => SABnzbdEmptyResult.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobPostProcessingOptions(
+    nzoId,
+    option, {
+    mode = 'change_opts',
+    cancelToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'value': nzoId,
+      r'value2': option.toJson(),
+      r'mode': mode,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SABnzbdResult<SABnzbdEmptyResult>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '',
+              queryParameters: queryParameters,
+              data: _data,
+              cancelToken: cancelToken,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SABnzbdResult<SABnzbdEmptyResult>.fromJson(
+      _result.data!,
+      (json) => SABnzbdEmptyResult.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobPriority(
+    nzoId,
+    priority, {
+    mode = 'queue',
+    action = 'priority',
+    cancelToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'value': nzoId,
+      r'value2': priority.toJson(),
+      r'mode': mode,
+      r'name': action,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SABnzbdResult<SABnzbdEmptyResult>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '',
+              queryParameters: queryParameters,
+              data: _data,
+              cancelToken: cancelToken,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SABnzbdResult<SABnzbdEmptyResult>.fromJson(
+      _result.data!,
+      (json) => SABnzbdEmptyResult.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setJobScript(
+    nzoId,
+    script, {
+    mode = 'change_script',
+    cancelToken,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'value': nzoId,
+      r'value2': script,
+      r'mode': mode,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SABnzbdResult<SABnzbdEmptyResult>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '',
+              queryParameters: queryParameters,
+              data: _data,
+              cancelToken: cancelToken,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SABnzbdResult<SABnzbdEmptyResult>.fromJson(
+      _result.data!,
+      (json) => SABnzbdEmptyResult.fromJson(json as Map<String, dynamic>),
+    );
+    return value;
+  }
+
+  @override
   Future<SABnzbdResult<SABnzbdEmptyResult>> setSpeedLimit(
     limit, {
     mode = 'config',
