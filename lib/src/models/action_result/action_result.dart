@@ -8,6 +8,7 @@ part 'action_result.g.dart';
 class SABnzbdActionResult with _$SABnzbdActionResult, JsonSerializableMixin {
   const factory SABnzbdActionResult({
     required bool status,
+    @JsonKey(name: 'nzo_ids') List<String>? nzoIds,
   }) = _SABnzbdActionResult;
 
   factory SABnzbdActionResult.fromJson(Map<String, Object?> json) =>

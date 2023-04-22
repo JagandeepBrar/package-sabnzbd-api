@@ -21,6 +21,8 @@ SABnzbdActionResult _$SABnzbdActionResultFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SABnzbdActionResult {
   bool get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nzo_ids')
+  List<String>? get nzoIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,7 @@ abstract class $SABnzbdActionResultCopyWith<$Res> {
           SABnzbdActionResult value, $Res Function(SABnzbdActionResult) then) =
       _$SABnzbdActionResultCopyWithImpl<$Res, SABnzbdActionResult>;
   @useResult
-  $Res call({bool status});
+  $Res call({bool status, @JsonKey(name: 'nzo_ids') List<String>? nzoIds});
 }
 
 /// @nodoc
@@ -51,12 +53,17 @@ class _$SABnzbdActionResultCopyWithImpl<$Res, $Val extends SABnzbdActionResult>
   @override
   $Res call({
     Object? status = null,
+    Object? nzoIds = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
+      nzoIds: freezed == nzoIds
+          ? _value.nzoIds
+          : nzoIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -69,7 +76,7 @@ abstract class _$$_SABnzbdActionResultCopyWith<$Res>
       __$$_SABnzbdActionResultCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status});
+  $Res call({bool status, @JsonKey(name: 'nzo_ids') List<String>? nzoIds});
 }
 
 /// @nodoc
@@ -84,12 +91,17 @@ class __$$_SABnzbdActionResultCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? nzoIds = freezed,
   }) {
     return _then(_$_SABnzbdActionResult(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as bool,
+      nzoIds: freezed == nzoIds
+          ? _value._nzoIds
+          : nzoIds // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -97,17 +109,30 @@ class __$$_SABnzbdActionResultCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SABnzbdActionResult implements _SABnzbdActionResult {
-  const _$_SABnzbdActionResult({required this.status});
+  const _$_SABnzbdActionResult(
+      {required this.status,
+      @JsonKey(name: 'nzo_ids') final List<String>? nzoIds})
+      : _nzoIds = nzoIds;
 
   factory _$_SABnzbdActionResult.fromJson(Map<String, dynamic> json) =>
       _$$_SABnzbdActionResultFromJson(json);
 
   @override
   final bool status;
+  final List<String>? _nzoIds;
+  @override
+  @JsonKey(name: 'nzo_ids')
+  List<String>? get nzoIds {
+    final value = _nzoIds;
+    if (value == null) return null;
+    if (_nzoIds is EqualUnmodifiableListView) return _nzoIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'SABnzbdActionResult(status: $status)';
+    return 'SABnzbdActionResult(status: $status, nzoIds: $nzoIds)';
   }
 
   @override
@@ -115,12 +140,14 @@ class _$_SABnzbdActionResult implements _SABnzbdActionResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SABnzbdActionResult &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._nzoIds, _nzoIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(
+      runtimeType, status, const DeepCollectionEquality().hash(_nzoIds));
 
   @JsonKey(ignore: true)
   @override
@@ -138,7 +165,9 @@ class _$_SABnzbdActionResult implements _SABnzbdActionResult {
 }
 
 abstract class _SABnzbdActionResult implements SABnzbdActionResult {
-  const factory _SABnzbdActionResult({required final bool status}) =
+  const factory _SABnzbdActionResult(
+          {required final bool status,
+          @JsonKey(name: 'nzo_ids') final List<String>? nzoIds}) =
       _$_SABnzbdActionResult;
 
   factory _SABnzbdActionResult.fromJson(Map<String, dynamic> json) =
@@ -146,6 +175,9 @@ abstract class _SABnzbdActionResult implements SABnzbdActionResult {
 
   @override
   bool get status;
+  @override
+  @JsonKey(name: 'nzo_ids')
+  List<String>? get nzoIds;
   @override
   @JsonKey(ignore: true)
   _$$_SABnzbdActionResultCopyWith<_$_SABnzbdActionResult> get copyWith =>

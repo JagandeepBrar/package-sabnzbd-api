@@ -13,6 +13,48 @@ abstract class SABnzbdAPI {
     return _SABnzbdAPI(dio);
   }
 
+  /// Add an NZB by supplying a URL to the NZB file.
+  @GET('')
+  Future<SABnzbdActionResult> addNZBUrl(
+    @Query('name') String url, {
+    @Query('nzbname') String? name,
+    @Query('password') String? password,
+    @Query('cat') String? category,
+    @Query('script') String? script,
+    @Query('priority') SABnzbdPriority? priority,
+    @Query('pp') SABnzbdPostProcessing? postProcessing,
+    @Query('mode') String mode = 'addurl',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Add an NZB by supplying the NZB file byte data.
+  @POST('')
+  Future<SABnzbdActionResult> addNZBFile(
+    @Part(name: 'name', fileName: 'nzb') List<int> file,
+    @Query('nzbname') String name, {
+    @Query('password') String? password,
+    @Query('cat') String? category,
+    @Query('script') String? script,
+    @Query('priority') SABnzbdPriority? priority,
+    @Query('pp') SABnzbdPostProcessing? postProcessing,
+    @Query('mode') String mode = 'addfile',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Add an NZB by supplying a local path to the NZB on the host filesystem.
+  @GET('')
+  Future<SABnzbdActionResult> addNZBLocalFile(
+    @Query('name') String path, {
+    @Query('nzbname') String? name,
+    @Query('password') String? password,
+    @Query('cat') String? category,
+    @Query('script') String? script,
+    @Query('priority') SABnzbdPriority? priority,
+    @Query('pp') SABnzbdPostProcessing? postProcessing,
+    @Query('mode') String mode = 'addlocalfile',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
   /// Pause the entire download queue.
   @GET('')
   Future<SABnzbdActionResult> pauseQueue({
