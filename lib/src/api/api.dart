@@ -15,7 +15,7 @@ abstract class SABnzbdAPI {
 
   /// Add an NZB by supplying a URL to the NZB file.
   @GET('')
-  Future<SABnzbdActionResult> addNZBUrl(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> addNZBUrl(
     @Query('name') String url, {
     @Query('nzbname') String? name,
     @Query('password') String? password,
@@ -29,7 +29,7 @@ abstract class SABnzbdAPI {
 
   /// Add an NZB by supplying the NZB file byte data.
   @POST('')
-  Future<SABnzbdActionResult> addNZBFile(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> addNZBFile(
     @Part(name: 'name', fileName: 'nzb') List<int> file,
     @Query('nzbname') String name, {
     @Query('password') String? password,
@@ -43,7 +43,7 @@ abstract class SABnzbdAPI {
 
   /// Add an NZB by supplying a local path to the NZB on the host filesystem.
   @GET('')
-  Future<SABnzbdActionResult> addNZBLocalFile(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> addNZBLocalFile(
     @Query('name') String path, {
     @Query('nzbname') String? name,
     @Query('password') String? password,
@@ -55,42 +55,105 @@ abstract class SABnzbdAPI {
     @CancelRequest() CancelToken? cancelToken,
   });
 
+  /// Move a queue job above the destination job.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdSwitchResult>> moveJob(
+    @Query('value') String nzoId,
+    @Query('value2') String destinationNzoId, {
+    @Query('mode') String mode = 'switch',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Move a queue job to a specific index.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdSwitchResult>> moveJobToIndex(
+    @Query('value') String nzoId,
+    @Query('value2') int index, {
+    @Query('mode') String mode = 'switch',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Pause a single queue job.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> pauseJob(
+    @Query('value') String nzoId, {
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'pause',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
   /// Pause the entire download queue.
   @GET('')
-  Future<SABnzbdActionResult> pauseQueue({
+  Future<SABnzbdResult<SABnzbdEmptyResult>> pauseQueue({
     @Query('mode') String mode = 'pause',
     @CancelRequest() CancelToken? cancelToken,
   });
 
   /// Pause the entire download queue for X amount of minutes.
   @GET('')
-  Future<SABnzbdActionResult> pauseQueueFor(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> pauseQueueFor(
     @Query('value') int minutes, {
     @Query('mode') String mode = 'config',
     @Query('name') String action = 'set_pause',
     @CancelRequest() CancelToken? cancelToken,
   });
 
+  /// Purge items from the queue.
+  ///
+  /// If no search query is supplied, all jobs will be purged.
+  /// Set `deleteFiles` to 1 to also delete the associated files from the host filesystem.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> purgeQueue(
+    @Query('search') String? query, {
+    @Query('del_files') int deleteFiles = 0,
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'purge',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
   ///Remove any set queue completion action.
   @GET('')
-  Future<SABnzbdActionResult> removeCompleteAction({
+  Future<SABnzbdResult<SABnzbdEmptyResult>> removeCompleteAction({
     @Query('value') String completeAction = '',
     @Query('mode') String mode = 'queue',
     @Query('name') String action = 'change_complete_action',
     @CancelRequest() CancelToken? cancelToken,
   });
 
+  /// Remove a single queue job.
+  ///
+  /// You can optionally pass in multiple jobs to remove by concatenating the NZO IDs with a comma.
+  /// Set `deleteFiles` to 1 to also delete the associated files from the host filesystem.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> removeJob(
+    @Query('value') String nzoId, {
+    @Query('del_files') int deleteFiles = 0,
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'delete',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
   /// Remove any set speed limit and utilize the full line speed.
   @GET('')
-  Future<SABnzbdActionResult> removeSpeedLimit({
+  Future<SABnzbdResult<SABnzbdEmptyResult>> removeSpeedLimit({
     @Query('value') String limit = '',
     @Query('mode') String mode = 'config',
     @Query('name') String action = 'speedlimit',
+    @CancelRequest() CancelToken? cancelToken,
+  });
+
+  /// Resume a single queue job.
+  @GET('')
+  Future<SABnzbdResult<SABnzbdEmptyResult>> resumeJob(
+    @Query('value') String nzoId, {
+    @Query('mode') String mode = 'queue',
+    @Query('name') String action = 'resume',
+    @CancelRequest() CancelToken? cancelToken,
   });
 
   /// Resume the entire download queue.
   @GET('')
-  Future<SABnzbdActionResult> resumeQueue({
+  Future<SABnzbdResult<SABnzbdEmptyResult>> resumeQueue({
     @Query('mode') String mode = 'resume',
     @CancelRequest() CancelToken? cancelToken,
   });
@@ -111,7 +174,7 @@ abstract class SABnzbdAPI {
 
   /// Set the queue completion action.
   @GET('')
-  Future<SABnzbdActionResult> setCompleteAction(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setCompleteAction(
     @Query('value') SABnzbdCompleteAction completeAction, {
     @Query('mode') String mode = 'queue',
     @Query('name') String action = 'change_complete_action',
@@ -123,7 +186,7 @@ abstract class SABnzbdAPI {
   /// If a number value is passed in then the speed limit is so to the value as a percentage.
   /// To set the speed limit to a specific KB/s or MB/s limit, suffix the number with `K` or `M` respectively.
   @GET('')
-  Future<SABnzbdActionResult> setSpeedLimit(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> setSpeedLimit(
     @Query('value') String limit, {
     @Query('mode') String mode = 'config',
     @Query('name') String action = 'speedlimit',
@@ -132,7 +195,7 @@ abstract class SABnzbdAPI {
 
   /// Sort the queue by the given type in the given direction.
   @GET('')
-  Future<SABnzbdActionResult> sortQueue(
+  Future<SABnzbdResult<SABnzbdEmptyResult>> sortQueue(
     @Query('sort') SABnzbdSortType sortType,
     @Query('dir') SABnzbdSortDirection direction, {
     @Query('mode') String mode = 'queue',
