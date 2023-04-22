@@ -1,3 +1,10 @@
+# 0.0.1-pre.3
+
+- support addfile endpoint
+- support addlocalfile endpoint
+- support addurl endpoint
+- support queue/sort endpoint
+
 # 0.0.1-pre.2
 
 - support change_complete_action endpoint
