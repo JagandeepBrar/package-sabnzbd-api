@@ -55,5 +55,5 @@ final history = await api.getHistory(); // Get items in the history
 [link-pubdev]: https://pub.dev/packages/sabnzbd_api
 [link-swagger]: https://sabnzbd.org/wiki/configuration/3.7/api
 [link-website]: https://sabnzbd.org
-[shield-license]: https://img.shields.io/github/license/RoninComputer/package-sabnzbd-api?style=for-the-badge
+[shield-license]: https://img.shields.io/github/license/JagandeepBrar/package-sabnzbd-api?style=for-the-badge
 [shield-pubdev]: https://img.shields.io/pub/v/sabnzbd_api.svg?style=for-the-badge
